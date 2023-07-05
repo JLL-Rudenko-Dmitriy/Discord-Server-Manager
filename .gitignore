@@ -1,0 +1,8 @@
+#Folders
+node_modules
+
+#Config_files
+config.json
+
+#EsLinter
+.eslintrc.json

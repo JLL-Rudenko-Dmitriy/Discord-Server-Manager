@@ -1,0 +1,18 @@
+{
+  "name": "servermanager",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">\r   <h1>*:radio_button::white_circle:Discord Bot:white_circle::radio_button:*</h1> \r   <h2>Discord bot for managing your guild</h2>\r </div>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.44.0"
+  }
+}
