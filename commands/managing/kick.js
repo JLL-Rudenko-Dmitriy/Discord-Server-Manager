@@ -22,7 +22,8 @@ module.exports = {
     async execute(interaction) {
         const target = interaction.options.getUser('member');
         const reason = interaction.options.getString('reason') ?? 'The reason is unknown';
-        
+        const member = interaction.options.getMember('member');
+
         const confirm = new ButtonBuilder()
 			.setCustomId('confirm')
 			.setLabel('Confirm kick')
@@ -48,7 +49,7 @@ module.exports = {
             const confirmation = await response.awaitMessageComponent({ filter: collectorFilter, time: 60_000 });
         
             if (confirmation.customId === 'confirm') {
-                await interaction.guild.members.kick(target);
+                member.kick();
                 await confirmation.update({ content: `${target.username} has been kicked for reason: ${reason}`, components: [] });
             } else if (confirmation.customId === 'cancel') {
                 await confirmation.update({ content: 'Action cancelled', components: [] });
