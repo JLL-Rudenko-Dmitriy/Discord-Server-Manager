@@ -1,4 +1,6 @@
 <div align="center">
+
+  <img alt="" src="https://i.pinimg.com/564x/a7/6d/76/a76d7664498c9b6d2999f55bc912ddca.jpg">
   <h1>*:radio_button::white_circle:Discord Bot:white_circle::radio_button:*</h1> 
   <h2>Discord bot for managing your guild</h2>
 </div>
