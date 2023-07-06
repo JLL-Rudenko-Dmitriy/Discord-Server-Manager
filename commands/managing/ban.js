@@ -4,19 +4,19 @@ module.exports = {
 
 
     data: new SlashCommandBuilder()
-    .setName('kick')
-    .setDescription('Kick member from server')
+    .setName('ban')
+    .setDescription('Ban member from server')
 
     .addUserOption(option => 
         option.setName('member')
-        .setDescription('The member to kick')
+        .setDescription('The member to ban')
         .setRequired(true))
 
     .addStringOption(option =>
         option.setName('reason')
-        .setDescription('The reason for kicking')) 
+        .setDescription('The reason for banning')) 
 
-    .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
+    .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
     .setDMPermission(false),
 
     async execute(interaction) {
@@ -25,7 +25,7 @@ module.exports = {
         
         const confirm = new ButtonBuilder()
 			.setCustomId('confirm')
-			.setLabel('Confirm kick')
+			.setLabel('Confirm Ban')
 			.setStyle(ButtonStyle.Danger);
 
         const cancel = new ButtonBuilder()
@@ -37,7 +37,7 @@ module.exports = {
 			.addComponents(cancel, confirm);
 
         const response  = await interaction.reply({
-            content: `Are you sure you want to kick ${target} for reason: ${reason}?`,
+            content: `Are you sure you want to ban ${target} for reason: ${reason}?`,
             components: [actRow],
         });
 
@@ -48,8 +48,8 @@ module.exports = {
             const confirmation = await response.awaitMessageComponent({ filter: collectorFilter, time: 60_000 });
         
             if (confirmation.customId === 'confirm') {
-                await interaction.guild.members.kick(target);
-                await confirmation.update({ content: `${target.username} has been kicked for reason: ${reason}`, components: [] });
+                await interaction.guild.members.ban(target);
+                await confirmation.update({ content: `${target.username} has been banned for reason: ${reason}`, components: [] });
             } else if (confirmation.customId === 'cancel') {
                 await confirmation.update({ content: 'Action cancelled', components: [] });
             }
