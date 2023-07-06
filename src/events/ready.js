@@ -6,5 +6,5 @@ module.exports = {
     once: true,
     execute(client) {
         logger.logClinetReady(client);
-    }
+    },
 };
