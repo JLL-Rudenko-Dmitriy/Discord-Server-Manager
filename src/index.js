@@ -5,6 +5,9 @@ const path = require('node:path');
 const {Client, Collection, GatewayIntentBits } = require('discord.js');
 const {token} = require('../configuration/config.json');
 
+const { Op } = require('sequelize');
+const { guildMember, remarks, achivements  } = require('../database/dbObjects.js');
+
 
 
 
