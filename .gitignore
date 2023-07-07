@@ -6,3 +6,6 @@ config.json
 
 #EsLinter
 .eslintrc.json
+
+#Database
+*.sqlite
