@@ -35,6 +35,10 @@ module.exports = (sequlize,dataTypes) => {
             allowNull: false,
         },
 
+        AvatarHash: {
+            type: dataTypes.STRING,
+        },
+
         TimeStamp: {
             type: dataTypes.DATE,
             allowNull: false,

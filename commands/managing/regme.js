@@ -12,14 +12,15 @@ module.exports = {
     async execute(interaction) {    
         
         const member = interaction.member;
-        
+        const user = interaction.user;
         // const Tag  = interaction.user.tag;
-        const Tag  = interaction.member.displayName;
-        const Username = interaction.user.username;
+       
+        const Tag  = member.displayName;
+        const Username = user.username;
         const Rate = parseInt(1);
-        const TimeStamp = interaction.member.joinedTimestamp;
-        
-        console.log(interaction);
+        const TimeStamp = member.joinedTimestamp;
+        const AvatarHash = user.avatar;
+
 
         // Get all roles of the guild and push lvl role
         const lvlRoles = ['1126913233614282772', '1126913623739072562', '1126913803355947068', '1126913903528525835','1126914023984746597'];
@@ -48,8 +49,7 @@ module.exports = {
                 RoleId = interaction.guild.roles.cache.get(role).id;
                 flag = true;
             }});
-        
-            console.log(interaction.guild.roles.cache.get(lvlRoles[0]),RoleColor);    
+         
 
         if (flag) {
             const response  = await interaction.reply({
@@ -60,7 +60,7 @@ module.exports = {
         else {
         
             //reg user
-            addMember(Tag, Username, Rate, Hrole, RoleId, RoleColor, TimeStamp);
+            addMember(Tag, Username, Rate, Hrole, RoleId, RoleColor, AvatarHash, TimeStamp);
             interaction.member.roles.add(lvlR1);
 
             // MAKE EMBED message to component
@@ -70,8 +70,5 @@ module.exports = {
                 components: [],
             });
         }
-        
-        //console.log(_roles.sort((r1, r2) => interaction.member.guild.roles.comparePositions(r1, r2)));
-        // roles.forEach(role => console.log(e.name));
     },      
 };
