@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const {db_name, db_user, db_pass, db_host} = require('../configuration/config.json');
+
  
 
 const sequelize = new Sequelize(db_name, db_user, db_pass, {
@@ -7,7 +8,7 @@ const sequelize = new Sequelize(db_name, db_user, db_pass, {
     dialect: 'sqlite',
     logging: false,
     //SQLite only:
-    storage: 'database.sqlite',
+    storage: '..\\database\\database.sqlite',
 });
 
 //Tables:

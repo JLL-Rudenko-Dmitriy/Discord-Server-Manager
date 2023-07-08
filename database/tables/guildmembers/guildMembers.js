@@ -18,10 +18,21 @@ module.exports = (sequlize,dataTypes) => {
 
         Rate: {
             type: dataTypes.INTEGER,
+            allowNull: false,
         },
 
         HRole: {
             type: dataTypes.STRING,
+        },
+
+        RoleId: {
+            type: dataTypes.STRING,
+            allowNull: false,
+        },
+
+        RoleColor: {
+            type: dataTypes.STRING,
+            allowNull: false,
         },
 
         TimeStamp: {

@@ -7,7 +7,7 @@ const sequelize = new Sequelize(db_name, db_user, db_pass, {
     dialect: 'sqlite',
     logging: false,
     //SQLite only:
-    storage: 'database.sqlite',
+    storage: '..\\database\\database.sqlite',
 });
 
 //Tables:
