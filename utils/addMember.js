@@ -1,6 +1,6 @@
 const { guildMember, remarks, achivements  } = require('../database/dbObjects.js');
 
-module.exports = async (Tag, Username, Rate, HRole, RoleId, RoleColor, AvatarHash, TimeStamp) => {
+module.exports = async (Tag, Username, Rate, HRole, RoleId, RoleColor, AvatarHash, AvatarURL, BannerURL, TimeStamp) => {
     const regMember = await guildMember.create({
         Tag: Tag, 
         Username: Username, 
@@ -9,6 +9,8 @@ module.exports = async (Tag, Username, Rate, HRole, RoleId, RoleColor, AvatarHas
         RoleId: RoleId, 
         RoleColor: RoleColor,
         AvatarHash: AvatarHash,
+        AvatarURL: AvatarURL,
+        BannerURL: BannerURL,
         TimeStamp: TimeStamp
     });
 

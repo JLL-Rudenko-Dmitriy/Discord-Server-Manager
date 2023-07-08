@@ -1,0 +1,8 @@
+{
+    "Title" : "Personal document",
+    "Descrtiption" : "Information about member:",
+    "Level" : "\tYour lvl:",
+    "Time" : "\tTime on the server:",
+    "Name" : "\tName:", 
+    "Tag" : "\tTag:"
+}
