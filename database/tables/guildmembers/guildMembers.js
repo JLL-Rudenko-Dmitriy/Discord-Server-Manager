@@ -39,6 +39,14 @@ module.exports = (sequlize,dataTypes) => {
             type: dataTypes.STRING,
         },
 
+        AvatarURL: {
+            type: dataTypes.STRING,
+        },  
+
+        BannerURL: {
+            type: dataTypes.STRING,
+        },
+
         TimeStamp: {
             type: dataTypes.DATE,
             allowNull: false,
