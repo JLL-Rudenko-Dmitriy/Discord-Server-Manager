@@ -1,6 +1,6 @@
-const {SlashCommandBuilder, PermissionFlagsBits, Collection,} = require('discord.js');
-const addMember = require('C:\\Users\\ntpyd\\Desktop\\BykaNull\\bots\\ServerManager\\utils\\addMember.js')
-
+const {SlashCommandBuilder, PermissionFlagsBits, Collection, EmbedBuilder } = require('discord.js');
+const addMember = require('../../utils/addMember.js');
+const infoEmbed = require('../../utils/infoMeEmbed.json');
 
 
 module.exports = {
@@ -20,7 +20,10 @@ module.exports = {
         const Rate = parseInt(1);
         const TimeStamp = member.joinedTimestamp;
         const AvatarHash = user.avatar;
+        const AvatarURL = user.avatarURL();
+        const BannerURL = user.bannerURL();
 
+        console.log(user);
 
         // Get all roles of the guild and push lvl role
         const lvlRoles = ['1126913233614282772', '1126913623739072562', '1126913803355947068', '1126913903528525835','1126914023984746597'];
@@ -35,7 +38,7 @@ module.exports = {
         
         var Hrole = lvlR1.name;
         var RoleId = lvlR1.id;
-        var RoleColor = lvlR1.hexColor;
+        var RoleColor = "#b3b3b3";
 
         let flag = false;
         //Register user if he don't have lvl role 
@@ -60,14 +63,31 @@ module.exports = {
         else {
         
             //reg user
-            addMember(Tag, Username, Rate, Hrole, RoleId, RoleColor, AvatarHash, TimeStamp);
+            addMember(Tag, Username, Rate, Hrole, RoleId, RoleColor, AvatarHash, AvatarURL, BannerURL, TimeStamp);
             interaction.member.roles.add(lvlR1);
 
-            // MAKE EMBED message to component
+            const since = (new Date().getTime()) - TimeStamp;
 
+            
+
+            // MAKE EMBED message to component
+            const InfoMembed = new EmbedBuilder()
+                .setColor(RoleColor)
+                .setTitle(infoEmbed.Title)
+                .setAuthor({name: Tag, iconURL: AvatarURL})
+                .setDescription(infoEmbed.Descrtiption)
+                .setThumbnail(AvatarURL)
+                .setImage(BannerURL)
+                .addFields(
+                        {name: infoEmbed.Tag, value: Tag},
+                        {name: infoEmbed.Name, value: Username},
+                        {name: infoEmbed.Level, value: Hrole},
+                        {name: infoEmbed.Time, value:  `${Math.floor(since/(24*1000*60*60))}` +  " days"});
+                
+            
             const response = await interaction.reply({
-                content: `You: ${Username} was added to Server Rate System!!!\nthank you, enjoy your server's activity.`,
-                components: [],
+                content: "",
+                embeds: [InfoMembed],
             });
         }
     },      
