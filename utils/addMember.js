@@ -1,18 +1,13 @@
 const { guildMember, remarks, achivements  } = require('../database/dbObjects.js');
 
-module.exports = async (Tag, Username, HRole, TimeStamp) => {
-
-    console.log(Tag);
-    console.log(Username);
-    console.log(HRole);
-    console.log(TimeStamp);
-    
-
-
+module.exports = async (Tag, Username, Rate, HRole, RoleId, RoleColor, TimeStamp) => {
     const regMember = await guildMember.create({
         Tag: Tag, 
         Username: Username, 
-        HRole: HRole, 
+        Rate: Rate,
+        HRole: HRole,
+        RoleId: RoleId, 
+        RoleColor: RoleColor,
         TimeStamp: TimeStamp
     });
 
