@@ -1,7 +1,6 @@
 const {SlashCommandBuilder, PermissionFlagsBits, Collection, EmbedBuilder } = require('discord.js');
 const addMember = require('../../utils/addMember.js');
-const infoEmbed = require('../../utils/infoMeEmbed.json');
-
+const EmbedConstructor = require('../../utils/EmbedConstructor.js')
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -61,34 +60,28 @@ module.exports = {
             });
         }
         else {
-        
-            //reg user
-            addMember(Tag, Username, Rate, Hrole, RoleId, RoleColor, AvatarHash, AvatarURL, BannerURL, TimeStamp);
-            interaction.member.roles.add(lvlR1);
-
-            const since = (new Date().getTime()) - TimeStamp;
-
-            
-
             // MAKE EMBED message to component
-            const InfoMembed = new EmbedBuilder()
-                .setColor(RoleColor)
-                .setTitle(infoEmbed.Title)
-                .setAuthor({name: Tag, iconURL: AvatarURL})
-                .setDescription(infoEmbed.Descrtiption)
-                .setThumbnail(AvatarURL)
-                .setImage(BannerURL)
-                .addFields(
-                        {name: infoEmbed.Tag, value: Tag},
-                        {name: infoEmbed.Name, value: Username},
-                        {name: infoEmbed.Level, value: Hrole},
-                        {name: infoEmbed.Time, value:  `${Math.floor(since/(24*1000*60*60))}` +  " days"});
+            const InfoMembed = new EmbedConstructor(RoleColor, AvatarURL, BannerURL, Tag, Username, Hrole, Rate, TimeStamp);
                 
+            try {
+                const response = await interaction.reply({
+                    content: "",
+                    embeds: [InfoMembed],
+                });
+                try {
+                    addMember(Tag, Username, Rate, Hrole, RoleId, RoleColor, AvatarHash, AvatarURL, BannerURL, TimeStamp);
+                }
+                catch(dbError) {
+                    console.log("DataBase ERROR: " + dbError);
+                }
+                interaction.member.roles.add(lvlR1);
+            }
+            catch(error) {
+                console.log(error);
+            }
             
-            const response = await interaction.reply({
-                content: "",
-                embeds: [InfoMembed],
-            });
+
+
         }
     },      
 };
