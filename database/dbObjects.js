@@ -10,6 +10,7 @@ const sequelize = new Sequelize(db_name, db_user, db_pass, {
     storage: '..\\database\\database.sqlite',
 });
 
+
 //Tables:
 const guildMember =  require('./tables/guildmembers/guildMembers.js')(sequelize,Sequelize.DataTypes);
 const remarks =  require('./tables/guildmembers/remarks.js')(sequelize,Sequelize.DataTypes);

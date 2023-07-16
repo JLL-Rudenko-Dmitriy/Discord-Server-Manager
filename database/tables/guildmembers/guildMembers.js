@@ -17,7 +17,7 @@ module.exports = (sequlize,dataTypes) => {
         },
 
         Rate: {
-            type: dataTypes.INTEGER,
+            type: dataTypes.FLOAT,
             allowNull: false,
         },
 

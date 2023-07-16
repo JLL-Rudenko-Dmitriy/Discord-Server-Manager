@@ -1,24 +1,10 @@
 const { EmbedBuilder } = require('discord.js');
 
-
-
-
 module.exports = 
 class EmbedMeConstructor {
     constructor(RoleColor, AvatarURL, BannerURL, Tag, Username, Hrole, Rate, TimeStamp) {
         const infoText = require('./infoMeEmbed.json');
         const since = (new Date().getTime()) - TimeStamp;
-
-        console.log({
-            "AvatarURL": AvatarURL,
-            "BannerURL" : BannerURL,
-            "RoleColor": RoleColor,
-            "Tag" : Tag,
-            "Username": Username,
-            "Hrole" : Hrole, 
-            "Rate" : Rate, 
-            "TimeStamp": TimeStamp
-        },infoText );
 
         this.Embed = new EmbedBuilder()
         .setColor(RoleColor)
@@ -34,11 +20,6 @@ class EmbedMeConstructor {
             {name: infoText.Rating, value: String(Rate),inline: true},
             {name: infoText.Time, value: `${Math.floor(since/(1000*60*60*24))} ` + infoText.TimeValue}
         );
-
-
-        console.log(this.Embed);
-        
-
         return this.Embed;
     };
 

@@ -1,6 +1,9 @@
 const {SlashCommandBuilder, PermissionFlagsBits, Collection, EmbedBuilder } = require('discord.js');
 const addMember = require('../../database/commands/addMember.js');
 const EmbedConstructor = require('../../utils/EmbedMeConstructor.js');
+const getMember = require('../../database/commands/getMember.js');
+const { updRegMembers } = require('../../utils/PackMembers.js');
+
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -12,7 +15,6 @@ module.exports = {
         
         const member = interaction.member;
         const user = interaction.user;
-        // const Tag  = interaction.user.tag;
        
         const Tag  = member.displayName;
         const Username = user.username;
@@ -22,7 +24,6 @@ module.exports = {
         const AvatarURL = user.avatarURL();
         const BannerURL = user.bannerURL();
 
-        console.log(user);
 
         // Get all roles of the guild and push lvl role
         const lvlRoles = ['1126913233614282772', '1126913623739072562', '1126913803355947068', '1126913903528525835','1126914023984746597'];
@@ -33,7 +34,7 @@ module.exports = {
         const lvlR5 = interaction.guild.roles.cache.get(lvlRoles[4]); //Lvl 5 role
         
         // Get all roled of this member
-        const user_roles  = member.roles.cache; 
+        const user_roles = member.roles.cache; 
         
         var Hrole = lvlR1.name;
         var RoleId = lvlR1.id;
@@ -70,6 +71,7 @@ module.exports = {
                 });
                 try {
                     addMember(Tag, Username, Rate, Hrole, RoleId, RoleColor, AvatarHash, AvatarURL, BannerURL, TimeStamp);
+                    updRegMembers();
                 }
                 catch(dbError) {
                     console.log("DataBase ERROR: " + dbError);
@@ -79,8 +81,6 @@ module.exports = {
             catch(error) {
                 console.log(error);
             }
-            
-
 
         }
     },      
