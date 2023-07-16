@@ -13,10 +13,6 @@ module.exports = async (userName) => {
 
         const memberData = response[0];
 
-        if (memberData.BannerURL == null) {
-            memberData.BannerURL = 'https://media.discordapp.net/attachments/1127562593305903176/1128053211362766848/wide-mandalla.gif';
-        }
-
         return memberData;
     }
     catch(dbError) {

@@ -8,7 +8,12 @@ const { updRegMembers } = require('../../utils/PackMembers.js');
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('regme')
-    .setDescription('Sign out in local database'),
+    .setDescription('Sign out in local database')
+    .addStringOption(option => 
+        option
+        .setName('bannerurl')
+        .setDescription('Your link to gif banner')
+        .setRequired(false)),
     
 
     async execute(interaction) {    
@@ -22,7 +27,7 @@ module.exports = {
         const TimeStamp = member.joinedTimestamp;
         const AvatarHash = user.avatar;
         const AvatarURL = user.avatarURL();
-        const BannerURL = user.bannerURL();
+        let BannerURL = user.bannerURL();
 
 
         // Get all roles of the guild and push lvl role
@@ -61,6 +66,11 @@ module.exports = {
             });
         }
         else {
+            console.log(BannerURL);
+            if (BannerURL === undefined) {
+                BannerURL = interaction.options.getString('bannerurl');
+            }
+
             // MAKE EMBED message to component
             const InfoMembed = new EmbedConstructor(RoleColor, AvatarURL, BannerURL, Tag, Username, Hrole, Rate, TimeStamp);
                 

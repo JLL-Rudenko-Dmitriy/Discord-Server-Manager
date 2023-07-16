@@ -9,6 +9,8 @@ module.exports = async (client) => {
     const data = await sortByRating();
     // console.log(data);
 
+    if (data.length === 0) return ;
+
     const whiteSpace = '--------------------';
     const titles = ['Username', 'Rating', 'LvL'];
     const fields = [];
